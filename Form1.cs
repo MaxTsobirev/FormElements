@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.VisualBasic;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -213,6 +214,25 @@ namespace FormElements
             else if (e.Node.Text == "Radio2")
             {
                 this.Controls.Add(rb2);
+            }
+            else if(e.Node.Text=="MessageBox")
+            {
+                MessageBox.Show("MessageBox", "Kõige lihtsam aken");
+                var answer = MessageBox.Show("Хочешь написать послание в будущее?", "Aken koos nupudega",MessageBoxButtons.YesNo);
+                if(answer == DialogResult.Yes)
+                {
+                    string text = Interaction.InputBox("Расскажи что нибудь", "InputBox", "Жили были ....");
+                    if(MessageBox.Show("Оно отправиться в будущее","Teksti salvestamine",MessageBoxButtons.OKCancel)==DialogResult.OK)
+                    {
+                        lbl.Text = text;
+                        Controls.Add(lbl);
+                    }
+                    else
+                    {
+                        lbl.Text = "Siis mina lisan oma teksti!";
+                        Controls.Add(lbl);
+                    }
+                }
             }
         }
         
