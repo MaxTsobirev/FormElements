@@ -79,6 +79,8 @@
   <ItemGroup>
     <Content Include="38b590e59031edd4cb9b2146a6.jpg" />
     <Content Include="d2teamspirit-728x420.png" />
+    <Content Include="g.jpg" />
+    <Content Include="ghoul.jpg" />
     <Content Include="Horn_Toss_icon.png" />
     <Content Include="ti10.png" />
   </ItemGroup>
