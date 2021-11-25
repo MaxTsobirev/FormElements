@@ -23,6 +23,7 @@ namespace FormElements
         CheckBox cb2;
         RadioButton rb;
         RadioButton rb2;
+        TabControl tabC;
 
         public Form1()
         {
@@ -43,7 +44,7 @@ namespace FormElements
             tn.Nodes.Add(new TreeNode("Radio"));
             tn.Nodes.Add(new TreeNode("Radio2"));
             tn.Nodes.Add(new TreeNode("Tekstkast-TextBox"));
-            tn.Nodes.Add(new TreeNode("Kaart-TabControl"));
+            tn.Nodes.Add(new TreeNode("Kaart"));
             tn.Nodes.Add(new TreeNode("MessageBox"));
 
             //button
@@ -93,7 +94,9 @@ namespace FormElements
             rb2.CheckedChanged += Rb2_CheckedChanged;
             rb2.Size = new Size(100, 20);
             rb2.Location = new Point(200, 300);
-            rb2.Text = "q";
+            rb2.Text = "Teema";
+            //tab
+
 
 
 
@@ -103,7 +106,7 @@ namespace FormElements
 
         private void Rb2_CheckedChanged(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            
         }
 
         private void Rb_CheckedChanged(object sender, EventArgs e)
@@ -234,10 +237,59 @@ namespace FormElements
                     }
                 }
             }
+            else if (e.Node.Text == "Radio2")
+            {
+                rb.CheckedChanged += new EventHandler(Rb_CheckedChanged);
+                rb2.CheckedChanged += Rb2_CheckedChanged1;
+            }
+            else if (e.Node.Text=="Kaart")
+            {
+                tabC = new TabControl();
+                tabC.Location = new Point(150,150);
+                tabC.Size = new Size(300, 200);
+                TabPage tabP1 = new TabPage("youtube");
+                WebBrowser wb = new WebBrowser();
+                wb.Url =new Uri ("https://www.youtube.com");
+                tabP1.Controls.Add(wb);
+                TabPage tabP2 = new TabPage("qwqw");
+                TabPage tabP3 = new TabPage("erer");
+                tabP3.DoubleClick += TabP3_DoubleClick;
+                tabC.Controls.Add(tabP1);
+                tabC.Controls.Add(tabP2);
+                tabC.Controls.Add(tabP3);
+                tabC.Selected += TabC_Selected;
+                this.Controls.Add(tabC);
+            }
         }
-        
 
+        private void TabC_Selected(object sender, TabControlEventArgs e)
+        {
+            this.tabC.TabPages.Clear();
+        }
 
+        private void TabP3_DoubleClick(object sender, EventArgs e)
+        {
+            string title = "tabP" + (tabC.TabCount + 1).ToString();
+            TabPage tb = new TabPage(title);
+            tabC.TabPages.Add(tb);
+        }
+
+        private void Rb2_CheckedChanged1(object sender, EventArgs e)
+        {
+            if(rb2.Checked)
+            {
+                this.BackColor = Color.Black;
+                rb2.ForeColor = Color.White;
+                rb.ForeColor = Color.White;
+
+            }
+            else if (rb2.Checked)
+            {
+                this.BackColor = Color.White;
+                rb2.ForeColor = Color.Black;
+                rb.ForeColor = Color.Black;
+            }
+        }
     }
 
 
