@@ -84,6 +84,7 @@
     <Content Include="ghoul.jpg" />
     <Content Include="Horn_Toss_icon.png" />
     <Content Include="ti10.png" />
+    <Content Include="XMLFile1.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
