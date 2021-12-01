@@ -25,6 +25,7 @@ namespace FormElements
         RadioButton rb2;
         TabControl tabC;
         ListBox listBox1;
+        Panel pn;
 
         public Form1()
         {
@@ -107,8 +108,13 @@ namespace FormElements
             listBox1.Location = new Point(200, 250);
             listBox1.Width = 100; listBox1.Height = 100;
             listBox1.SelectedIndexChanged += ListBox1_SelectedIndexChanged;
-            //data
-            
+            //panel
+            pn = new Panel();
+            pn.Location = new Point(200, 250);
+            pn.Size = new System.Drawing.Size(228, 200);
+
+
+
 
 
 
@@ -119,6 +125,8 @@ namespace FormElements
             this.Controls.Add(tree);
         }
 
+
+
         private void ListBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             switch(listBox1.SelectedItem.ToString())
@@ -126,7 +134,8 @@ namespace FormElements
                 case ("blue"):tree.BackColor = Color.Blue;break;
                 case ("yellow"): tree.BackColor = Color.Yellow; break;
                 case ("green"): tree.BackColor = Color.Green; break;
-                case ("gray"): tree.BackColor = Color.Gray; break;
+                case ("pink"): tree.BackColor = Color.Pink; break;
+                case ("red"): tree.BackColor = Color.Red; break;
             }
         }
 
@@ -309,14 +318,19 @@ namespace FormElements
                     MainMenu menu = new MainMenu();
                     MenuItem menuFile = new MenuItem("File");
                     menuFile.MenuItems.Add("Exit",new EventHandler(menuFile_Exit_Select));
-                    menu.MenuItems.Add(menuFile);
-                    this.Menu = menu;
-                    MenuItem About = menu.MenuItems.Add("&Click");
-                    About.MenuItems.Add(new MenuItem("&Click", new EventHandler(this.About_clicked), Shortcut.F1));
-                    this.Menu = menu;
+                    menuFile.MenuItems.Add("Click", new EventHandler(About_clicked));
+                    menuFile.MenuItems.Add("picture", new EventHandler(Picture));
+                menu.MenuItems.Add(menuFile);
+                this.Menu = menu;
                 }
+
             }
 
+        private void Picture(object sender, EventArgs e)
+        {
+            pn.BackgroundImage = Image.FromFile(@"C:\Users\opilane\source\repos\FormElements\38b590e59031edd4cb9b2146a6.jpg");
+            this.Controls.Add(pn);
+        }
 
         private void About_clicked(object sender, EventArgs e)
         {
